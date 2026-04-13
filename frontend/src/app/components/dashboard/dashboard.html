@@ -1,0 +1,38 @@
+<div class="dashboard-container">
+  <header>
+    <h1>Spesenanträge Dashboard</h1>
+    <button routerLink="/create-request" class="create-btn">Neuen Antrag erstellen</button>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Titel</th>
+        <th>Geschätzte Kosten</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 
+        HIER IST DER KRITISCHE TEIL:
+        1. Die Schleife: *ngFor="let req of requests" -> Stimmt der Name "requests"?
+        2. Die Datenbindung: {{ req.title }} -> Gibt es die Eigenschaft "title" in meinen Daten?
+      -->
+      <tr *ngFor="let req of requests" [ngClass]="req.status.toLowerCase()">
+        <td>{{ req.title }}</td>
+        <td>{{ req.estimatedCost | currency:'EUR' }}</td>
+        <td>
+          <span class="status">{{ req.status }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 
+    Dieser Teil wird angezeigt, wenn die Schleife nichts zum Anzeigen hat.
+    Wenn Sie diese Nachricht sehen, ist das 'requests'-Array leer.
+  -->
+  <div *ngIf="!requests || requests.length === 0" class="empty-state">
+    <p>Keine Anträge gefunden. Erstellen Sie Ihren ersten Antrag!</p>
+  </div>
+</div>

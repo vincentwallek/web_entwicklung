@@ -1,0 +1,15 @@
+<!-- Unsere eigene, feste Kopfzeile für die gesamte Anwendung -->
+<nav class="main-nav">
+  <div class="nav-content">
+    <h1>Reise-Spesenplaner</h1>
+    <!-- Hier könnten später weitere Links (z.B. für Logout) hin -->
+  </div>
+</nav>
+
+<!-- Der Hauptinhaltsbereich -->
+<main>
+  <!-- DIES IST DER WICHTIGSTE TEIL: -->
+  <!-- Hier sagt Angular: "Zeige an dieser Stelle die Komponente an,
+       die zur aktuellen URL passt (z.B. das Dashboard oder das Formular)." -->
+  <router-outlet></router-outlet>
+</main>

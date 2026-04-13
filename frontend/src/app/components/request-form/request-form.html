@@ -1,0 +1,63 @@
+<div class="form-container">
+  <h1>Neuen Spesenantrag erstellen</h1>
+
+  <!-- Formularfeld für den Titel -->
+  <div class="form-group">
+    <label for="title">Titel des Antrags</label>
+    <input 
+      id="title" 
+      type="text" 
+      [(ngModel)]="newRequest.title" 
+      placeholder="z.B. Geschäftsreise nach Hamburg"
+      name="title" required>
+  </div>
+
+  <!-- Formularfeld für die Projekt-ID -->
+  <div class="form-group">
+    <label for="projectId">Projekt / Kostenstelle</label>
+    <input 
+      id="projectId" 
+      type="text" 
+      [(ngModel)]="newRequest.projectId" 
+      placeholder="z.B. PROJ-A45"
+      name="projectId" required>
+  </div>
+
+  <!-- Formularfeld für die geschätzten Kosten -->
+  <div class="form-group">
+    <label for="cost">Geschätzte Kosten (€)</label>
+    <input 
+      id="cost" 
+      type="number" 
+      [(ngModel)]="newRequest.estimatedCost" 
+      placeholder="z.B. 350.50"
+      name="cost" required>
+  </div>
+
+  <!-- Formularfeld für das Reisedatum -->
+  <div class="form-group">
+    <label for="travelDate">Reisedatum</label>
+    <input 
+      id="travelDate" 
+      type="date" 
+      [(ngModel)]="newRequest.travelDate"
+      name="travelDate" required>
+  </div>
+  
+  <!-- Formularfeld für die optionale Beschreibung -->
+  <div class="form-group">
+    <label for="description">Beschreibung (optional)</label>
+    <textarea 
+      id="description" 
+      [(ngModel)]="newRequest.description" 
+      rows="4"
+      name="description">
+    </textarea>
+  </div>
+
+  <!-- Buttons zum Absenden oder Abbrechen -->
+  <div class="form-actions">
+    <button (click)="submitRequest()" class="submit-btn">Antrag einreichen</button>
+    <button routerLink="/dashboard" class="cancel-btn">Abbrechen</button>
+  </div>
+</div>

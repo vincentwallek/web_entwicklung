@@ -1,0 +1,12 @@
+# Ignoriert Abhängigkeiten und generierte Dateien vom Frontend (Node/Angular)
+/frontend/node_modules
+/frontend/dist
+/frontend/.angular
+
+# Ignoriert Abhängigkeiten und Laufzeitdateien vom Backend (Python)
+/backend/request-service/venv
+/backend/request-service/__pycache__
+/backend/request-service/spesen.db
+
+# Ignoriert VS Code-spezifische Dateien
+.vscode/
