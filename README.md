@@ -67,3 +67,27 @@ Von der geplanten Architektur wurde bisher **nur der `request-service`** als fun
 *   **Kubernetes Deployments:** Die fertigen Services sollen in Docker-Container verpackt und für ein Deployment mit Kubernetes vorbereitet werden.
 *   **`.gitignore`-Konfiguration:** Eine korrekt konfigurierte `.gitignore`-Datei ist essenziell und bereits vorhanden, um `node_modules`, `venv` und andere generierte Dateien von der Versionskontrolle auszuschließen.
 *   **API-Dokumentation (Swagger):** FastAPI generiert automatisch eine interaktive Swagger-UI, die unter `http://localhost:3001/docs` verfügbar ist und als Dokumentation der API-Endpunkte dient.
+
+### Setup & Start (Befehle)
+
+**1. Code herunterladen**
+git clone <URL_ZUM_GIT_REPOSITORY>
+cd reise-spesen-planer
+
+**2. Backend einrichten (Terminal 1)**
+cd backend/request-service
+python -m venv venv
+# Windows: .\venv\Scripts\Activate.ps1 | macOS/Linux: source venv/bin/activate
+pip install -r requirements.txt
+
+**3. Frontend einrichten (Terminal 2)**
+cd frontend
+npm install
+
+**4. Anwendung starten**
+# Im Backend-Terminal (Terminal 1):
+uvicorn main:app --reload --port 3001 --host 0.0.0.0
+
+# Im Frontend-Terminal (Terminal 2):
+ng serve --open
+
