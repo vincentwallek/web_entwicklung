@@ -91,3 +91,20 @@ uvicorn main:app --reload --port 3001 --host 0.0.0.0
 # Im Frontend-Terminal (Terminal 2):
 ng serve --open
 
+
+
+Notizen:
+- packages in git Ignore
+- Swagger Dokumentation für Endpunkte (bei FastAPI automatisch)
+- Hatoas für alle API Endpunkte
+- REST/ gRPC/ Kafka für Microservice Kommunikation möglichst alle 3 einbauen, mindestens 2 -> bis jetzt REST bei request-service
+- RESTful
+- oAuth2 für authentifizierung/ autorisierung
+- Kubernetics Deployments mit Scaling/ Autoscaling werte sinnvoll wählen (begründbar)
+- npm Module und andere lokale Dateien wie venv in Git Ignore (wichtig)
+- Services Zustandslos
+- echte Microservice struktur: eine Businesslogik, eine API und eine Datenbank pro Service
+- Docker Images, Volumes
+- Api Gateway -> auth. und autorisierung (idp) -> Server auch
+- Kubernetes Control Plane auf eigenem Server
+- Versionierung der npm modules
