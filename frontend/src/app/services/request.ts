@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, Subject, map, tap } from 'rxjs';
 
 /**
  * Beschreibt, wie ein vollständiges Spesenantrags-Objekt aussieht,
@@ -31,7 +30,8 @@ export type CreateRequestDto = Omit<ExpenseRequest, 'id' | 'status' | 'submitted
 })
 export class RequestService {
   // Die Adresse unseres FastAPI-Backends.
-  private apiUrl = 'http://127.0.0.1:3001';
+  // localhost verhindert CORS/Host-Mismatch, wenn das Frontend unter localhost läuft.
+  private apiUrl = 'http://localhost:3001';
 
   // Der "Radiosender" für die Kommunikation zwischen Komponenten.
   private _refreshNeeded$ = new Subject<void>();
@@ -45,12 +45,26 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
+  private normalizeRequestsResponse(payload: unknown): ExpenseRequest[] {
+    if (Array.isArray(payload)) {
+      return payload as ExpenseRequest[];
+    }
+
+    if (payload && typeof payload === 'object' && Array.isArray((payload as { requests?: unknown }).requests)) {
+      return (payload as { requests: ExpenseRequest[] }).requests;
+    }
+
+    return [];
+  }
+
   /**
    * Ruft die Liste aller Spesenanträge vom Backend ab.
    * (Zurückgesetzt auf die einfache, funktionierende Version ohne Fehlerbehandlung).
    */
   getRequests(): Observable<ExpenseRequest[]> {
-    return this.http.get<ExpenseRequest[]>(`${this.apiUrl}/requests`);
+    return this.http.get<unknown>(`${this.apiUrl}/requests`).pipe(
+      map((payload) => this.normalizeRequestsResponse(payload))
+    );
   }
 
   /**

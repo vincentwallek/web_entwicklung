@@ -16,6 +16,7 @@ import { RequestService, ExpenseRequest } from '../../services/request';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   requests: ExpenseRequest[] = [];
+  loadError = '';
   private refreshSubscription!: Subscription;
 
   constructor(private requestService: RequestService) {}
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       next: (data) => {
         console.log('Erfolg! Daten vom Backend geladen:', data);
         this.requests = data;
+        this.loadError = '';
       },
       
       // =================================================================
@@ -53,6 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         
         // Wir setzen die Liste auf leer, weshalb die Tabelle nichts anzeigt.
         this.requests = []; 
+        this.loadError = 'Antraege konnten nicht geladen werden. Bitte pruefen Sie API-URL, CORS und Browser-Konsole.';
       }
       // =================================================================
     });

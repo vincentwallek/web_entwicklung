@@ -62,3 +62,12 @@ th {
   margin-top: 4rem;
   color: #6c757d;
 }
+
+.error-state {
+  margin-bottom: 1rem;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #f5c2c7;
+  background: #f8d7da;
+  color: #842029;
+}

@@ -4,6 +4,10 @@
     <button routerLink="/create-request" class="create-btn">Neuen Antrag erstellen</button>
   </header>
 
+  <div *ngIf="loadError" class="error-state">
+    <p>{{ loadError }}</p>
+  </div>
+
   <table>
     <thead>
       <tr>
